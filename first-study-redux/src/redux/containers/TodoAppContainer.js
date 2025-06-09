@@ -1,31 +1,33 @@
-import { connect } from "react-redux";
+import { connect } from "react-redux"
 // import { addTodoActionCreator, removeTodoActionCreator, removeAllTodoActionCreator } from "../actions";
-import { addTodoActionCreator, removeTodoActionCreator, removeAllTodoActionCreator } from "../ducks/todoDuck";
-import TodoApp from "../../components/TodoApp";
+// import { addTodoActionCreator, removeTodoActionCreator, removeAllTodoActionCreator } from "../ducks/todoDuck";
+import {
+  addTodo as addTodoActionCreator,
+  removeTodo as removeTodoActionCreator,
+  removeAll as removeAllTodoActionCreator,
+} from "../actions/todoAction"
+import TodoApp from "../../components/TodoApp"
 
 function mapStateToProps(state, ownProps) {
   return {
-    todoItems: state.todo
-  };
+    todoItems: state.todo,
+  }
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    addTodo: (text) => {
-      dispatch(addTodoActionCreator(text));
+    addTodo: text => {
+      dispatch(addTodoActionCreator(text))
     },
     removeTodo: () => {
-      dispatch(removeTodoActionCreator());
+      dispatch(removeTodoActionCreator())
     },
     removeAll: () => {
-      dispatch(removeAllTodoActionCreator());
+      dispatch(removeAllTodoActionCreator())
     },
   }
 }
 
-const TodoAppContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TodoApp);
+const TodoAppContainer = connect(mapStateToProps, mapDispatchToProps)(TodoApp)
 
-export default TodoAppContainer;
+export default TodoAppContainer
